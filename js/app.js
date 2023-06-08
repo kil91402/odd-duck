@@ -100,8 +100,6 @@ function handleProductClick(event) {
   }
   theBestProduct.voteCount++;
   productViews.viewCount++;
-  console.log(theBestProduct.voteCount);
-  console.log(productViews.viewCount);
   setRandomProductImages();
 }
 
