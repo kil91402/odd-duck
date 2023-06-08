@@ -5,6 +5,7 @@ let resultsArea = document.getElementById("results-area");
 
 let product1Img = document.getElementById("product1");
 let product2Img = document.getElementById("product2");
+let product3Img = document.getElementById("product3");
 
 function Product(name, imgSrc) {
   this.name = name;
@@ -62,6 +63,9 @@ function setProductImages(product1, product2, product3) {
   product2.src = product2.imgSrc;
   product2.alt = product2.name;
   product2.title = product2.name;
+  product3.src = product3.imgSrc;
+  product3.alt = product3.name;
+  product3.title = product3.name;
 }
 
 function getRandomInt(max) {
@@ -71,13 +75,16 @@ function getRandomInt(max) {
 function setRandomProductImages() {
   let productIndex1 = getRandomInt(productArray.length);
   let productIndex2 = getRandomInt(productArray.length);
+  let productIndex3 = getRandomInt(productArray.length);
   let product1 = productArray[productIndex1];
   let product2 = productArray[productIndex2];
-  while (productIndex1 === productIndex2) {
+  let product3 = productArray[productIndex3];
+  while ((productIndex1 === productIndex2) === productIndex3) {
     productIndex1 = getRandomInt(productArray.length);
     productIndex2 = getRandomInt(productArray.length);
+    productIndex3 = getRandomInt(productArray.length);
   }
-  setProductImages(product1, product2);
+  setProductImages(product1, product2, product3);
 }
 
 setRandomProductImages();
