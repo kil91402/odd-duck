@@ -111,7 +111,6 @@ function handleProductClick(event) {
     }
   }
   theBestProduct.voteCount++;
-
   setRandomProductImages();
 }
 
