@@ -111,6 +111,10 @@ function handleProductClick(event) {
     }
   }
   theBestProduct.voteCount++;
+  voterLimit--;
+  if (voterLimit == 0) {
+    votingArea.removeEventListener("click", handleProductClick);
+  }
   setRandomProductImages();
 }
 
