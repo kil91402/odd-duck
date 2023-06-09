@@ -1,11 +1,13 @@
 "use strict";
 
+let voterLimit = 25;
 let votingArea = document.getElementById("voting-area");
 let resultsArea = document.getElementById("results-area");
 
 let product1Img = document.getElementById("product1");
 let product2Img = document.getElementById("product2");
 let product3Img = document.getElementById("product3");
+console.log(product2Img);
 
 function Product(name, imgSrc) {
   this.name = name;
@@ -57,33 +59,37 @@ productArray.push(tauntaun);
 productArray.push(sweep);
 
 function setProductImages(product1, product2, product3) {
-  product1.src = product1.imgSrc;
-  product1.alt = product1.name;
-  product1.title = product1.name;
-  product2.src = product2.imgSrc;
-  product2.alt = product2.name;
-  product2.title = product2.name;
-  product3.src = product3.imgSrc;
-  product3.alt = product3.name;
-  product3.title = product3.name;
+  product1Img.src = product1.imgSrc;
+  product1Img.alt = product1.name;
+  product1Img.title = product1.name;
+  product2Img.src = product2.imgSrc;
+  product2Img.alt = product2.name;
+  product2Img.title = product2.name;
+  product3Img.src = product3.imgSrc;
+  product3Img.alt = product3.name;
+  product3Img.title = product3.name;
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function getRandomInt() {
+  return Math.floor(Math.random() * productArray.length);
 }
 
 function setRandomProductImages() {
   let productIndex1 = getRandomInt(productArray.length);
   let productIndex2 = getRandomInt(productArray.length);
   let productIndex3 = getRandomInt(productArray.length);
-  let product1 = productArray[productIndex1];
-  let product2 = productArray[productIndex2];
-  let product3 = productArray[productIndex3];
-  while ((productIndex1 === productIndex2) === productIndex3) {
+  while (
+    productIndex1 === productIndex2 ||
+    productIndex1 === productIndex3 ||
+    productIndex2 === productIndex3
+  ) {
     productIndex1 = getRandomInt(productArray.length);
     productIndex2 = getRandomInt(productArray.length);
     productIndex3 = getRandomInt(productArray.length);
   }
+  let product1 = productArray[productIndex1];
+  let product2 = productArray[productIndex2];
+  let product3 = productArray[productIndex3];
   setProductImages(product1, product2, product3);
 }
 
@@ -102,11 +108,10 @@ function handleProductClick(event) {
     let product = productArray[i];
     if (product.name === target.alt) {
       theBestProduct = product;
-      productViews = product;
     }
   }
   theBestProduct.voteCount++;
-  productViews.viewCount++;
+
   setRandomProductImages();
 }
 
@@ -119,8 +124,7 @@ function renderResults() {
     let product = productArray[i];
     let productName = product.name;
     let productVoteCount = product.voteCount;
-    let productViews = product.viewCount;
-    let report = `${productName} had ${productVoteCount} votes and ${productViews} views.`;
+    let report = `${productName} had ${productVoteCount} votes.`;
     let productLI = document.createElement("li");
     productLI.textContent = report;
     productUL.appendChild(productLI);
