@@ -136,3 +136,36 @@ function renderResults() {
 }
 let showResultsButton = document.getElementById("show-results-button");
 showResultsButton.addEventListener("click", renderResults);
+
+function displayChart(data) {
+  let ctx = document.getElementById("product-chart");
+  let dataObj = {
+    type: "bar",
+    data: {
+      labels: ["product1", "product2", "product3"],
+      datasets: [
+        {
+          label: "votes",
+          data: data,
+        },
+      ],
+    },
+  };
+  let chart = new Chart(ctx, dataObj);
+}
+
+function getVoteData(productArray) {
+  let votes = [];
+  for (let product of productArray) {
+    votes.push(product.voteCount);
+  }
+  return Votes;
+}
+
+function getLabelData(productArray) {
+  let labels = [];
+  for (let product of productArray) {
+    labels.push(product.name);
+  }
+}
+displayChart(productArray);
