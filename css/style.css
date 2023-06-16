@@ -32,3 +32,9 @@ img {
   border-width: 1px;
   margin: 10px;
 }
+
+#chart {
+  height: 50%;
+  width: 50%;
+  align-content: center;
+}
