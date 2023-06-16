@@ -103,7 +103,6 @@ function handleProductClick(event) {
   console.log(productName);
 
   let theBestProduct;
-  let productViews;
   for (let i = 0; i < productArray.length; i++) {
     let product = productArray[i];
     if (product.name === target.alt) {
@@ -120,7 +119,8 @@ function handleProductClick(event) {
 
 votingArea.addEventListener("click", handleProductClick);
 
-function renderResults() {
+function renderResults(event) {
+  event.preventDefault();
   resultsArea.innerHTML = "";
   let productUL = document.createElement("ul");
   for (let i = 0; i < productArray.length; i++) {
@@ -133,33 +133,42 @@ function renderResults() {
     productUL.appendChild(productLI);
   }
   resultsArea.appendChild(productUL);
+  displayChart(productArray);
 }
 let showResultsButton = document.getElementById("show-results-button");
 showResultsButton.addEventListener("click", renderResults);
 
+let chart;
 function displayChart(data) {
+  if (chart !== undefined) {
+    chart.destroy();
+  }
+  let labels = getLabelData(data);
+  let votes = getVoteData(data);
   let ctx = document.getElementById("product-chart");
   let dataObj = {
     type: "bar",
     data: {
-      labels: ["product1", "product2", "product3"],
+      labels: labels,
       datasets: [
         {
-          label: "votes",
-          data: data,
+          label: "Votes",
+          data: votes,
         },
       ],
     },
   };
-  let chart = new Chart(ctx, dataObj);
+  chart = new Chart(ctx, dataObj);
 }
+
+displayChart(productArray);
 
 function getVoteData(productArray) {
   let votes = [];
   for (let product of productArray) {
     votes.push(product.voteCount);
   }
-  return Votes;
+  return votes;
 }
 
 function getLabelData(productArray) {
@@ -167,5 +176,5 @@ function getLabelData(productArray) {
   for (let product of productArray) {
     labels.push(product.name);
   }
+  return labels;
 }
-displayChart(productArray);

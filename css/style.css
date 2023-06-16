@@ -2,10 +2,6 @@ body {
   background-color: darkkhaki;
 }
 
-main {
-  display: flex;
-}
-
 h1 {
   text-align: center;
   background: olivedrab;
@@ -17,15 +13,16 @@ h2 {
 }
 
 #results-area {
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
+  font-size: 20px;
+  text-align: center;
 }
 
 #voting-area {
   display: flex;
-  justify-content: space-around;
-  width: 80%;
+  flex-direction: row;
+  justify-content: left;
+  justify-content: space-evenly;
+  padding: 25px;
 }
 
 img {
@@ -34,15 +31,4 @@ img {
   border-style: solid;
   border-width: 1px;
   margin: 10px;
-}
-
-#results-area ul {
-  max-width: 90%;
-  max-height: 90%;
-  list-style-type: none;
-  overflow: auto;
-}
-
-ul li {
-  margin: 5px;
 }

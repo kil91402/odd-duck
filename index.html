@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
     <title>Odd Duck Product</title>
   </head>
   <body>
@@ -18,11 +18,14 @@
         <div><img id="product2" /></div>
         <div><img id="product3" /></div>
       </section>
-      <section id="results-area">
-        <h2>Results</h2>
+
+      <div id="results-area">
         <button id="show-results-button">Show Results</button>
+      </div>
+
+      <section id="chart">
+        <canvas id="product-chart"></canvas>
       </section>
-      <section id="product-chart"></section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
